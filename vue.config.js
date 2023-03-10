@@ -1,7 +1,5 @@
 const { defineConfig } = require('@vue/cli-service')
 const webpack = require('webpack')
-const { VantResolver } = require('unplugin-vue-components/resolvers')
-const ComponentsPlugin = require('unplugin-vue-components/webpack')
 
 module.exports = defineConfig({
   transpileDependencies: true,
@@ -46,12 +44,5 @@ module.exports = defineConfig({
         args[0].title= 'vue移动端开源项目'
         return args
       })
-  },
-  configureWebpack: {
-    plugins: [
-      ComponentsPlugin({
-        resolvers: [VantResolver()]
-      })
-    ]
   }
 })

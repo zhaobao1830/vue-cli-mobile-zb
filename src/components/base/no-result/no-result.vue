@@ -24,25 +24,25 @@
 </script>
 
 <style scoped lang="scss">
-  .no-result {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate3d(-50%, -50%, 0);
-    .no-result-content {
-      text-align: center;
-      .icon {
-        width: 270px;
-        height: 170px;
-        margin: 0 auto;
-        @include bg-image('no-result');
-        background-size: 270px 170px;
-      }
-      .text {
-        margin-top: 30px;
-        font-size: 13px;
-        color: #333333;
-      }
+.no-result {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+  .no-result-content {
+    text-align: center;
+    .icon {
+      width: 270px;
+      height: 170px;
+      margin: 0 auto;
+      @include bg-image('no-result');
+      background-size: 270px 170px;
+    }
+    .text {
+      margin-top: 30px;
+      font-size: 13px;
+      color: #333333;
     }
   }
+}
 </style>

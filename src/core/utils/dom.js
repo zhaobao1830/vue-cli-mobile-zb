@@ -1,11 +1,9 @@
-export function addClass(el, className) {
-  if (!el.classList.contains(className)) {
-    el.classList.add(className)
+export function getData (el, name, val) {
+  const prefix = 'data-'
+  if (val) {
+    return el.setAttribute(prefix + name, val)
   }
-}
-
-export function removeClass(el, className) {
-  el.classList.remove(className)
+  return el.getAttribute(prefix + name)
 }
 
 export function getRect(el) {

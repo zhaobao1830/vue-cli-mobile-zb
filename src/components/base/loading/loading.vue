@@ -1,42 +1,52 @@
 <template>
   <div class="loading">
-    <div class="loading-content">
-      <img width="50" height="50" src="./loading.gif">
-      <p class="desc">{{title}}</p>
-    </div>
+    <img
+      :width="imgStyle.width"
+      :height="imgStyle.height"
+      :src="imgSrc"
+      alt="loadingImg"
+    >
+    <p
+      class="desc"
+      v-show="titleShow"
+    >{{title}}</p>
   </div>
 </template>
-
-<script>
+<script type="text/ecmascript-6">
   export default {
     name: 'loading',
-    data() {
-      return {
-        title: '正在载入...'
-      }
-    },
-    methods: {
-      setTitle(title) {
-        this.title = title
+    props: {
+      titleShow: {
+        type: Boolean,
+        default: true
+      },
+      title: {
+        type: String,
+        default: '正在载入...'
+      },
+      imgStyle: {
+        type: Object,
+        default: function () {
+          return {
+            width: 24,
+            height: 24
+          }
+        }
+      },
+      imgSrc: {
+        type: String,
+        default: require('./loading.gif')
       }
     }
   }
 </script>
-
 <style scoped lang="scss">
-  .loading {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate3d(-50%, -50%, 0);
-    z-index: 10;
-    .loading-content {
-      text-align: center;
-      .desc {
-        line-height: 20px;
-        font-size: $font-size-small;
-        color: $color-text-l;
-      }
+  .loading{
+    width: 100%;
+    text-align: center;
+    .desc{
+      line-height: 20px;
+      font-size: 12px;
     }
   }
 </style>

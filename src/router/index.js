@@ -1,23 +1,19 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import Vue from 'vue'
+import VueRouter from 'vue-router'
 
-const Home = () => import('@/views/home/home')
+const home = () => import('@/views/home/home.vue')
+
+Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    redirect: {
-      name: 'Home'
-    }
-  },
-  {
-    path: '/home',
-    name: 'Home',
-    component: Home
+    name: 'home',
+    component: home
   }
 ]
 
-const router = createRouter({
-  history: createWebHashHistory(),
+const router = new VueRouter({
   routes
 })
 

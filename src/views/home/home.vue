@@ -1,55 +1,37 @@
 <template>
   <div class="home">
-    <van-button type="primary">我是首页按钮</van-button>
-    <van-form
-      ref="homeFormRef"
-      @submit="formSubmit"
-    >
-      <van-field
-        v-model="name"
-        name="name"
-        label="姓名"
-        :rules="[{required: true, message: '请填写姓名'}]"
-      />
-      <van-field
-        v-model="age"
-        name="age"
-        label="年龄"
-        :rules="[{required: true, message: '请填写年龄'}]"
-      />
-      <van-button round block type="primary" native-type="submit">
-        提交
-      </van-button>
-    </van-form>
+    <scroll-pull-up-down class="home-container">
+      <div class="home-content">
+        <van-button type="primary">主要按钮</van-button>
+      </div>
+    </scroll-pull-up-down>
   </div>
 </template>
 
-<script setup>
-  import { useStore } from 'vuex'
-  import { computed, ref } from 'vue'
+<script>
+  import ScrollPullUpDown from '@/components/base/scroll/scroll-pull-up-down.vue'
 
-  const store = useStore()
-  const playlist = computed(() => store.getters.currentSong)
-
-  console.log(playlist)
-
-  const homeFormRef = ref(null)
-  const name = ref('')
-  const age = ref('')
-
-  function formSubmit() {
-    const ref = homeFormRef.value
-    ref.validate().then(() => {
-      console.log('校验成功')
-    })
-      .catch(() => {
-        console.log('校验失败')
-      })
+  export default {
+    name: 'home',
+    components: {
+      ScrollPullUpDown
+    }
   }
 </script>
 
 <style scoped lang="scss">
-  .ruler-demo{
-    width: 360px;
+  .home{
+    .home-container{
+      position: absolute;
+      width: 100%;
+      top: 0;
+      bottom: 0;
+      background-color: #F6F6F6;
+      touch-action: none;
+      overflow: hidden;
+      .home-content{
+        height: 700px;
+      }
+    }
   }
 </style>
