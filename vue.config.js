@@ -27,7 +27,7 @@ module.exports = defineConfig({
   devServer: {
     proxy: {
       '/api': {
-        target: 'http://192.168.0.132:8086/', // 代理跳转的地址
+        target: 'http://192.168.3.30:8092/', // 代理跳转的地址
         pathRewrite: { '^/api': '' },
         changeOrigin: true,
         secure: false // 接受 运行在 https 上的服务

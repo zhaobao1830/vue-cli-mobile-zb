@@ -1,6 +1,5 @@
 import axios from 'axios'
 import Config from '@/core/config'
-import Parameter from '@/core/utils/parameter'
 import { Toast } from 'vant'
 
 const config = {
@@ -15,26 +14,6 @@ _axios.defaults.headers.post['Content-Type'] = 'application/json; charset=UTF-8'
 let cancel
 // 对axios的request配置
 _axios.interceptors.request.use(async (config) => {
-  // 对参数进行加密处理
-  if (config.method === 'post') {
-    const dataObject = config.data
-    let dataObjectValueList = ''
-    /**
-     * 如果有不需要加密的参数，就将其过滤
-     * noSignList 不需要加密的参数列表
-     */
-    if (config.noSignList && config.noSignList.length > 0) {
-      const dataObjectNew = JSON.parse(JSON.stringify(dataObject))
-      for (let i = 0; i < config.noSignList.length; i++) {
-        delete dataObjectNew[config.noSignList[i]]
-      }
-      dataObjectValueList = Object.values(dataObjectNew)
-    } else {
-      dataObjectValueList = Object.values(dataObject)
-    }
-    const sign = Parameter.getSigns(dataObjectValueList)
-    config.data = await Parameter.encryption(sign, config.data)
-  }
   // 发起请求的时候，如果之前的请求没有完成，就将之前的请求取消
   if (typeof (cancel) === 'function' && config.isCancel === true) {
     cancel('强制取消了请求')
@@ -73,16 +52,14 @@ _axios.interceptors.response.use((response) => {
  * @param {string} url
  * @param {object} data
  * @param {object} params
- * @param noSignList 不需要签名的参数集合
  * @param isCancel 是否触发取消
  */
-export function post(url, data = {}, params = {}, noSignList = {}, isCancel = false) {
+export function post(url, data = {}, params = {}, isCancel = false) {
   return _axios({
     method: 'post',
     url,
     data,
     params,
-    noSignList,
     isCancel
   }).catch((err) => {
     console.log(err)

@@ -1,7 +1,7 @@
 // api管理界面
 const apiServiceConfig = {
-  getPKey: 'apiPublic/getPKey', // 获取key
-  login: 'apiPublic/login' // 用户登录
+  register: 'user/register.do', // 注册
+  list: 'user/list.do' // 注册
 }
 
 export default apiServiceConfig

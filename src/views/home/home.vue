@@ -2,7 +2,8 @@
   <div class="home">
     <base-scroll class="home-container">
       <div class="home-content">
-        <van-button type="primary" @click="goTest">主要按钮</van-button>
+        <van-button type="primary" @click="register">注册</van-button>
+        <van-button type="primary" @click="getUserList">获取列表</van-button>
       </div>
     </base-scroll>
   </div>
@@ -10,6 +11,7 @@
 
 <script>
   import BaseScroll from '@/components/base/scroll/base-scroll.vue'
+  import PersonModel from '@/core/models/person'
 
   export default {
     name: 'home',
@@ -17,10 +19,13 @@
       BaseScroll
     },
     methods: {
-      goTest() {
-        this.$router.push({
-          path: '/test'
+      async register() {
+        const res = await PersonModel.register({
+          username: 'zb',
+          password: 'x123456',
+          confirmPassword: 'x123456'
         })
+        console.log(res)
       }
     }
   }
