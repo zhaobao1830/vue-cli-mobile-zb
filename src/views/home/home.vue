@@ -3,7 +3,6 @@
     <base-scroll class="home-container">
       <div class="home-content">
         <van-button type="primary" @click="register">注册</van-button>
-        <van-button type="primary" @click="getUserList">获取列表</van-button>
       </div>
     </base-scroll>
   </div>
