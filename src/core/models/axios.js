@@ -4,7 +4,9 @@ import { Toast } from 'vant'
 
 const config = {
   baseURL: Config.baseUrl,
-  timeout: 5 * 10000 // 请求超时时间设置
+  timeout: 5 * 10000, // 请求超时时间设置
+  // 跨域时允许携带凭证
+  widthCredentials: true
 }
 
 // 创建请求实例
