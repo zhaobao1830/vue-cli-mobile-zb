@@ -1,20 +1,27 @@
 <template>
   <div class="home">
-    <scroll-pull-up-down class="home-container">
+    <base-scroll class="home-container">
       <div class="home-content">
-        <van-button type="primary">主要按钮</van-button>
+        <van-button type="primary" @click="goTest">主要按钮</van-button>
       </div>
-    </scroll-pull-up-down>
+    </base-scroll>
   </div>
 </template>
 
 <script>
-  import ScrollPullUpDown from '@/components/base/scroll/scroll-pull-up-down.vue'
+  import BaseScroll from '@/components/base/scroll/base-scroll.vue'
 
   export default {
     name: 'home',
     components: {
-      ScrollPullUpDown
+      BaseScroll
+    },
+    methods: {
+      goTest() {
+        this.$router.push({
+          path: '/test'
+        })
+      }
     }
   }
 </script>
