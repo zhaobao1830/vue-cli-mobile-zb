@@ -34,7 +34,7 @@
           return
         }
         this.scroll = new BScroll(this.$refs.wrapper, {
-          ObserveDOM,
+          ObserveDOM: true,
           probeType: this.probeType,
           click: this.click,
           scrollX: this.scrollX
