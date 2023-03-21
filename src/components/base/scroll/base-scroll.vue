@@ -8,6 +8,8 @@
   import BScroll from '@better-scroll/core'
   import ObserveDOM from '@better-scroll/observe-dom'
 
+  BScroll.use(ObserveDOM)
+
   export default {
     props: {
       click: {
@@ -34,7 +36,7 @@
           return
         }
         this.scroll = new BScroll(this.$refs.wrapper, {
-          ObserveDOM: true,
+          ObserveDOM: true, // 开启 observe-dom 插件
           probeType: this.probeType,
           click: this.click,
           scrollX: this.scrollX
