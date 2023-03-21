@@ -1,15 +1,15 @@
 <template>
   <div
     ref="bsWrapper"
-    class="base-scroll-wrapper"
+    class="scroll-pull-up-down-wrapper"
   >
-    <div class="base-scroll-content">
-      <div ref="listWrapper" class="base-scroll-list-wrapper">
+    <div class="scroll-pull-up-down-content">
+      <div ref="listWrapper" class="scroll-pull-up-down-list-wrapper">
         <slot>
         </slot>
       </div>
       <slot name="pullup" :pullUpLoad="pullUpLoad" :isPullUpLoad="isPullUpLoad">
-        <div class="base-scroll-pullup-wrapper" v-if="pullUpLoad">
+        <div class="scroll-pull-up-down-pullup-wrapper" v-if="pullUpLoad">
           <div class="before-trigger" v-if="!isPullUpLoad">
             <span>{{pullUpTxt}}</span>
           </div>
@@ -19,7 +19,7 @@
         </div>
       </slot>
     </div>
-    <div v-if="pullDownRefresh" class="base-scroll-pulldown" ref="pulldown">
+    <div v-if="pullDownRefresh" class="scroll-pull-up-down-pulldown" ref="pulldown">
       <slot
         name="pulldown"
         :pullDownRefresh="pullDownRefresh"
@@ -27,7 +27,7 @@
         :beforePullDown="beforePullDown"
         :isPullingDown="isPullingDown"
       >
-        <div class="base-scroll-pulldown-wrapper" :style="pullDownStyle">
+        <div class="scroll-pull-up-down-pulldown-wrapper" :style="pullDownStyle">
           <div class="before-trigger" v-show="beforePullDown">
             <span>Pull Down and refresh</span>
           </div>
@@ -35,7 +35,7 @@
             <div v-show="isPullingDown" class="loading">
               <span>Loading...</span>
             </div>
-            <div v-show="!isPullingDown" class="base-scroll-pulldown-loaded">
+            <div v-show="!isPullingDown" class="scroll-pull-up-down-pulldown-loaded">
               <span>{{refreshTxt}}</span>
             </div>
           </div>
@@ -488,14 +488,6 @@
     z-index: 1;
     .base-scroll-list-wrapper{
       overflow: hidden;
-      .base-scroll-list{
-        .base-scrool-item{
-          height: 60px;
-          line-height: 60px;
-          font-size: 18px;
-          padding-left: 20px;
-        }
-      }
     }
     .base-scroll-pullup-wrapper{
       width: 100%;
