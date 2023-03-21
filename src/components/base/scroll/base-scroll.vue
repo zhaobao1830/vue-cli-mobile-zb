@@ -11,6 +11,7 @@
   BScroll.use(ObserveDOM)
 
   export default {
+    name: 'base-scroll',
     props: {
       click: {
         type: Boolean,

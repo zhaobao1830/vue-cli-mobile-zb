@@ -79,7 +79,7 @@
   const EVENT_PULLING_UP = 'pulling-up'
 
   export default {
-    name: 'baseScrolls',
+    name: 'scroll-pull-up-down',
     inject: {
       parentScroll: {
         default: null
@@ -168,11 +168,6 @@
           this._onPullUpLoad()
           this._pullUpLoadChangeHandler()
         }
-      },
-      async pullingDownHandler() {
-        this.beforePullDown = false
-        this.isPullingDown = true
-        this.$emit(EVENT_PULLING_DOWN)
       },
       async forceUpdate(dirty = false, nomore = false) {
         if (this.isPullDownUpdating) {
