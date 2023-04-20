@@ -1,5 +1,6 @@
 const { defineConfig } = require('@vue/cli-service')
 const webpack = require('webpack')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = defineConfig({
   transpileDependencies: true,
@@ -34,7 +35,15 @@ module.exports = defineConfig({
       }
     }
   },
-  chainWebpack(config) {
+  chainWebpack: (config) => {
+    // 这是为了剔除没有使用但被打包进去的模块
+    // 这块写法不一定对，没有测试
+    // config.plugin('ignore')
+    //   .use(new webpack.IgnorePlugin({
+    //     resourceRegExp: /^\.\/locale$/,
+    //     contextRegExp: /moment$/,
+    //   }))
+
     config.plugin('context')
       .use(webpack.ContextReplacementPlugin,
         [/moment[/\\]locale$/, /zh-cn/])
@@ -44,5 +53,27 @@ module.exports = defineConfig({
         args[0].title= 'vue移动端开源项目'
         return args
       })
+
+    config.plugin('webpack-bundle-analyzer')
+      .use(BundleAnalyzerPlugin)
+
+    // 分割第三方组件库
+    config.optimization.splitChunks = {
+      maxInitialRequests: Infinity,
+      minSize: 300 * 1024,
+      chunks: 'all',
+      cacheGroups: {
+        antVendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name (module) {
+            // get the name.
+            // node_modules/packageName/sub/path
+            // or node_modules/packageName
+            const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1]
+            return `npm.${packageName.replace('@', '')}`
+          }
+        },
+      }
+    }
   }
 })
