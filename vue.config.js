@@ -39,10 +39,10 @@ module.exports = defineConfig({
     // 这是为了剔除没有使用但被打包进去的模块
     // 这块写法不一定对，没有测试
     // config.plugin('ignore')
-    //   .use(new webpack.IgnorePlugin({
+    //   .use(webpack.IgnorePlugin, [
     //     resourceRegExp: /^\.\/locale$/,
-    //     contextRegExp: /moment$/,
-    //   }))
+    //     contextRegExp: /moment$/
+    //   ])
 
     config.plugin('context')
       .use(webpack.ContextReplacementPlugin,
